@@ -1,6 +1,6 @@
 {
-  "name": "Revisit<-Reject for Pivotal Tracker",
-  "version": "1.0.0",
+  "name": "Revisit-Reject for Pivotal Tracker",
+  "version": "1.0.1",
   "manifest_version": 2,
   "author": "Kim Johnson, Greg Behrend, Mark McDonald",
   "description": "This Chrome extension for Pivotal Tracker replaces the harsh-sounding \"Reject\" button with a \"Revisit\" button.",

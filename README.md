@@ -1,4 +1,4 @@
-# Revisit<-Reject for Pivotal Tracker
+# Revisit-Reject for Pivotal Tracker
 
 This Chrome extension for Pivotal Tracker replaces the harsh-sounding "Reject" button with a "Revisit" button. 
 
