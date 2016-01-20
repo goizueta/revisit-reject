@@ -18,13 +18,12 @@ chrome.extension.sendMessage({}, function(response) {
       observer.observe(document, config);
 
       var handleMutationEvents = function handleMutationEvents(mutation) {
-        Array.prototype.forEach.call(mutation.addedNodes, styleLabelsInNode);
-        styleLabelsInNode(mutation.target);
+        Array.prototype.forEach.call(mutation.addedNodes, renameRejectButtons);
       }
 
-      var styleLabelsInNode = function styleLabelsInNode(node) {
+      var renameRejectButtons = function renameRejectButtons(node) {
         if (nodeIsElement(node)) {
-          styleLabels(findLabelsInNode(node));
+          renameButtons(findRejectButtonsInNode(node));
         }
       }
 
@@ -32,35 +31,18 @@ chrome.extension.sendMessage({}, function(response) {
         return (typeof node.querySelectorAll !== 'undefined');
       }
 
-      var findLabelsInNode = function findLabelsInNode(node) {
-        return node.querySelectorAll('a.label');
+      var findRejectButtonsInNode = function findRejectButtonsInNode(node) {
+        return node.querySelectorAll('label.reject');
       }
 
-      var styleLabels = function styleLabels(labels) {
-        Array.prototype.forEach.call(labels, function(label) {
-          if (isLabelEligible(label.textContent)) {
-            var story = findStory(label);
-            if(!story) { return; }
-            styleStoryIcon(story);
-          }
+      var renameButtons = function renameButtons(rejectButtons) {
+        Array.prototype.forEach.call(rejectButtons, function(rejectButton) {
+            renameButton(rejectButton);
         });
       }
 
-      function findStory(label) {
-        var currentNode = label;
-
-        while(Array.prototype.indexOf.call(currentNode.classList, 'story') === -1) {
-          currentNode = currentNode.parentElement;
-          if(!currentNode) { return null; }
-        }
-        return currentNode;
-      }
-
-      function styleStoryIcon(story) {
-        if(story.querySelector('header.preview span.meta')) {
-          var meta = story.querySelector('header.preview span.meta');
-          meta.classList.add("charter-story");
-        }
+      function renameButton(rejectButton) {
+        rejectButton.textContent = "Revisit";
       }
     }
   }, 10);

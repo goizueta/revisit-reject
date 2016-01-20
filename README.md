@@ -1,8 +1,8 @@
-# Charters for Pivotal Tracker
+# Revisit<-Reject for Pivotal Tracker
 
-This Chrome extension for Pivotal Tracker makes it very easy to see which of your stories are labeled as charters. 
+This Chrome extension for Pivotal Tracker replaces the harsh-sounding "Reject" button with a "Revisit" button. 
 
-Any of story with a label that contains the string 'charter' will be displayed with a rocketship icon.
+All Reject buttons are now displayed as Revisit buttons.
 
 ## License
 
