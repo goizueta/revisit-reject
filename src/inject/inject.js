@@ -18,12 +18,13 @@ chrome.extension.sendMessage({}, function(response) {
       observer.observe(document, config);
 
       var handleMutationEvents = function handleMutationEvents(mutation) {
-        Array.prototype.forEach.call(mutation.addedNodes, renameRejectButtons);
+        Array.prototype.forEach.call(mutation.addedNodes, renameAcceptanceButtons);
       }
 
-      var renameRejectButtons = function renameRejectButtons(node) {
+      var renameAcceptanceButtons = function renameAcceptanceButtons(node) {
         if (nodeIsElement(node)) {
-          renameButtons(findRejectButtonsInNode(node));
+          renameButtons(findButtonsInNode(node, 'label.reject'), "Nope!");
+          renameButtons(findButtonsInNode(node, 'label.accept'), "Yep!");
         }
       }
 
@@ -31,18 +32,18 @@ chrome.extension.sendMessage({}, function(response) {
         return (typeof node.querySelectorAll !== 'undefined');
       }
 
-      var findRejectButtonsInNode = function findRejectButtonsInNode(node) {
-        return node.querySelectorAll('label.reject');
+      var findButtonsInNode = function findButtonsInNode(node, selector) {
+        return node.querySelectorAll(selector);
       }
 
-      var renameButtons = function renameButtons(rejectButtons) {
-        Array.prototype.forEach.call(rejectButtons, function(rejectButton) {
-            renameButton(rejectButton);
+      var renameButtons = function renameButtons(buttons, rename) {
+        Array.prototype.forEach.call(buttons, function(button) {
+            renameButton(button, rename);
         });
       }
 
-      function renameButton(rejectButton) {
-        rejectButton.textContent = "Revisit";
+      function renameButton(rejectButton, rename) {
+        rejectButton.textContent = rename;
       }
     }
   }, 10);
